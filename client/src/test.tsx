@@ -5,7 +5,7 @@ function Test() {
 
     // to test server integration
     useEffect(() => {
-        axios.get("http://localhost:3080/api/test")
+        axios.get("http://localhost:8080/api/test")
             .then((resp: AxiosResponse) => console.log(resp));
     }, []);
 

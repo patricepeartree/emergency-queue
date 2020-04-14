@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 
-import TestRoutes from "./test";
+import VoiceRoutes from "./voice";
 
 const router = Router();
 
-router.use("/test", TestRoutes);
+router.use("/voice", VoiceRoutes);
 
 export default router;

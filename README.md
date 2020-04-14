@@ -16,4 +16,34 @@ To start the client in development mode, execute `npm start`.
 - Express
 - TypeScript
 
-To start the server in development mode, execute `npm start`.
+The development docker-compose creates a development container for the server with an exposed shell. Start the services by executing `docker-compose up -d`, then:
+
+1. Open and attach to a new shell in the server container:
+
+```bash
+docker exec -it emergency-queue_server_1 /bin/bash
+```
+2. Start ngrok:
+
+```bash
+npm run ngrok
+```
+
+Copy your public ngrok URL and use it to forward Twilio webhooks:
+
+![ngrok](README-ngrok.png)
+
+3. Open and attach to a new shell in the server container (same as 1).
+
+4. Use this shell to start your project or install new packages:
+
+```bash
+npm start
+```
+
+## Mongo DB
+
+Mongo DB is started by the development docker-compose. Start the services by executing `docker-compose up -d`.
+
+You can check the logs by executing `docker logs -f emergency-queue_mongo_1`.
+

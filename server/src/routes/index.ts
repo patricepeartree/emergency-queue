@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 
-import VoiceRoutes from "./voice";
+import VoiceRoutes from "./voice-routes";
 
 const router = Router();
 

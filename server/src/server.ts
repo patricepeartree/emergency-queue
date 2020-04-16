@@ -32,4 +32,6 @@ app.use("/api", routes);
 SocketService.initSocket(server);
 
 // connect to Mongo and bootstrap http server
-connect(() => server.listen(port, () => console.log("Go ahead for server!")));
+connect(() => {
+    server.listen(port, () => console.log("Go ahead for server!"))
+});

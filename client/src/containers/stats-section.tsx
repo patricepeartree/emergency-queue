@@ -20,9 +20,13 @@ function StatsSection() {
         };
     }, []);
 
+    const callsOnQueue = stats?.callsOnQueue != null ? stats.callsOnQueue : "?";
+    const callsInProcess = stats?.callsInProcess != null ? stats.callsOnQueue : "?";
+
     return (
         <div>
-            <span>Calls in Queue: {stats?.callsOnQueue || "?"}</span>
+            <div>Calls in Queue: {callsOnQueue}</div>
+            <div>Calls in Process: {callsOnQueue}</div>
         </div>
     );
 }

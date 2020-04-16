@@ -1,31 +1,33 @@
-import express from 'express';
+import express, { Express } from 'express';
+import http, { Server } from 'http';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import * as ngrok from 'ngrok';
 
 import routes from './routes';
+import { SocketService } from "./services";
 
 const port = 8080; // TODO put this in an env variable
 
-const app = express();
+const app: Express = express();
+const server: Server = http.createServer(app);
+
+// define express aplication
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// enable cors
 
 // app.use(cors({
 //   origin: "http://localhost:3000",
 // }));
 app.use(cors());
 
+// register our routes bellow the "/api" base route
 app.use("/api", routes);
 
-// (async function() {
-//   console.log("Starting ngrok...");
-//   const url = await ngrok.connect(port);
+// initialize sockets
+SocketService.initSocket(server);
 
-  app.listen(port, err => {
-    if (err) {
-      return console.error(err);
-    }
-    return console.log("Go ahead for server!");
-  });
-// })();
+// bootstrap http server
+server.listen(port, () => console.log("Go ahead for server!"));

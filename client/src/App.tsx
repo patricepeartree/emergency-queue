@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Test from './test';
+
+import StatsSection from './containers/stats-section';
 
 function App() {
   return (
-    <Test />
+    <StatsSection />
   );
 }
 

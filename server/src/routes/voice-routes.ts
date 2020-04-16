@@ -17,7 +17,6 @@ const router = Router();
 // })
 
 router.get('/incoming', (req: Request, res: Response) => {
-
   const twimlResponse = askPatientName();
 
   res.writeHead(200, { 'Content-Type': 'text/xml' });
@@ -25,7 +24,6 @@ router.get('/incoming', (req: Request, res: Response) => {
 });
 
 router.post('/identification', (req: Request, res: Response) => {
-
   saveTemporarily('name', req);
   const twimlResponse = askPatientAge();
 
@@ -34,7 +32,6 @@ router.post('/identification', (req: Request, res: Response) => {
 });
 
 router.post('/age', (req: Request, res: Response) => {
-
   saveTemporarily('age', req);
   const twimlResponse = askPatientSymptoms();
 
@@ -44,9 +41,7 @@ router.post('/age', (req: Request, res: Response) => {
 });
 
 router.post('/symptoms', (req: Request, res: Response) => {
-
   saveTemporarily('symptoms', req);
-
   const twimlResponse = finishCall();
 
   res.writeHead(200, { 'Content-Type': 'text/xml' });

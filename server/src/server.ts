@@ -4,6 +4,9 @@ import cors from 'cors';
 import * as ngrok from 'ngrok';
 
 import routes from './routes';
+import {connect, getDB} from "./repository/init-mongo";
+import {saveToDatabase} from "./repository/request-repository";
+import {savePatientData} from "./services/voice-service";
 
 const port = 8080; // TODO put this in an env variable
 
@@ -22,10 +25,12 @@ app.use("/api", routes);
 //   console.log("Starting ngrok...");
 //   const url = await ngrok.connect(port);
 
+connect( () => {
   app.listen(port, err => {
     if (err) {
       return console.error(err);
     }
     return console.log("Go ahead for server!");
   });
+});
 // })();

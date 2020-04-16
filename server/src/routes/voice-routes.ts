@@ -40,14 +40,14 @@ router.post('/age', (req: Request, res: Response) => {
   res.end(twimlResponse.toString());
 });
 
-router.post('/symptoms', (req: Request, res: Response) => {
+router.post('/symptoms', async (req: Request, res: Response) => {
   saveTemporarily('symptoms', req);
   const twimlResponse = finishCall();
 
   res.writeHead(200, { 'Content-Type': 'text/xml' });
   res.end(twimlResponse.toString());
 
-  savePermanently(req);
+  await savePermanently(req);
 });
 
 export default router;

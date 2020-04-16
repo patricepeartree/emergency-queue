@@ -6,6 +6,8 @@ import cors from 'cors';
 import routes from './routes';
 import { SocketService } from "./services";
 
+import { connect } from "./repository/init-mongo";
+
 const port = 8080; // TODO put this in an env variable
 
 const app: Express = express();
@@ -29,5 +31,5 @@ app.use("/api", routes);
 // initialize sockets
 SocketService.initSocket(server);
 
-// bootstrap http server
-server.listen(port, () => console.log("Go ahead for server!"));
+// connect to Mongo and bootstrap http server
+connect(() => server.listen(port, () => console.log("Go ahead for server!")));

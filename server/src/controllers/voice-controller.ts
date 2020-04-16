@@ -1,7 +1,7 @@
 import { twiml } from 'twilio';
 import {Request} from "express";
 import Patient from "../model/patient";
-import {findSourceMap} from "module";
+import {savePatientData} from "../services/voice-service";
 
 const tempData = new Map<string,Patient>();
 
@@ -78,8 +78,10 @@ export function saveTemporarily(key: string, req: Request) {
     tempData.set(Caller, finalPatient);
 }
 
-export function savePermanently(req: Request) {
+export async function savePermanently(req: Request) {
     const { Caller } = req.body || {};
-    console.log(tempData.get(Caller));
-    // TODO put in mongo
+    const patient = tempData.get(Caller);
+    if (patient) {
+        await savePatientData(patient);
+    }
 }

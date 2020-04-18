@@ -27,11 +27,8 @@ function App() {
                 >
                     <StatsSection />
                 </Sidebar>
-
                 <Sidebar.Pusher>
-                    <div style={{ height: "100vh" }}>
-                        TODO
-                    </div>
+
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
         </>

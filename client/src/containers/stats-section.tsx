@@ -3,7 +3,7 @@ import SocketIO from 'socket.io-client';
 
 import Stats from '../model/api/stats';
 import APIUrls from '../constants/api-urls';
-import { Statistic } from 'semantic-ui-react';
+import Statistic from "../components/statistic";
 
 function StatsSection() {
     const [stats, setStats] = useState<Stats>();
@@ -25,26 +25,11 @@ function StatsSection() {
     const callsProcessedToday = stats?.callsProcessedToday != null ? stats.callsProcessedToday : "?";
 
     return (
-        <div style={{textAlign: "center"}}>
-            <div>
-                <Statistic color="yellow">
-                    <Statistic.Value>{callsOnQueue}</Statistic.Value>
-                    <Statistic.Label>Calls in Queue</Statistic.Label>
-                </Statistic>
-            </div>
-            <div>
-                <Statistic color="teal">
-                    <Statistic.Value>{callsInProcess}</Statistic.Value>
-                    <Statistic.Label>Calls in Process</Statistic.Label>
-                </Statistic>
-            </div>
-            <div>
-                <Statistic color="green">
-                    <Statistic.Value>{callsProcessedToday}</Statistic.Value>
-                    <Statistic.Label>Calls Processed Today</Statistic.Label>
-                </Statistic>
-            </div>
-        </div>
+        <>
+            <Statistic label="Calls in Queue" value={callsOnQueue} icon="clock outline" color="yellow" />
+            <Statistic label="Calls in Process" value={callsInProcess} icon="call" color="teal" />
+            <Statistic label="Calls Processed Today" value={callsProcessedToday} icon="check" color="green" />
+        </>
     );
 }
 

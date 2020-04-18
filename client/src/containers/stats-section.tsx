@@ -22,11 +22,13 @@ function StatsSection() {
 
     const callsOnQueue = stats?.callsOnQueue != null ? stats.callsOnQueue : "?";
     const callsInProcess = stats?.callsInProcess != null ? stats.callsOnQueue : "?";
+    const callsProcessedToday = stats?.callsProcessedToday != null ? stats.callsProcessedToday : "?";
 
     return (
         <div>
             <div>Calls in Queue: {callsOnQueue}</div>
-            <div>Calls in Process: {callsOnQueue}</div>
+            <div>Calls in Process: {callsInProcess}</div>
+            <div>Calls Processed Today: {callsProcessedToday}</div>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import Patient from "./patient";
 
-export enum RequestStaus {
+export enum RequestStatus {
     HOLD = "hold",
     PROCESSING = "processing",
     PROCESSED = "processed"
@@ -9,5 +9,5 @@ export enum RequestStaus {
 export default interface Request {
     patient: Patient;
     phoneNumber: string;
-    status: RequestStaus
+    status: RequestStatus
 }

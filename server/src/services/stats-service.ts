@@ -1,17 +1,34 @@
 import { getQueueCount } from "../repository/queue-repository";
 import { getRequestsWithStatusCount } from "../repository/request-repository";
 
-import Stats from "../model/stats";
-import { RequestStaus } from "../model/request";
+import { RequestStatus } from "../model/request";
+import { StatsRepository } from "../repository";
+import { SystemStats } from "../model";
 
-export async function getSystemStats(): Promise<Stats> {
-    const [queueCount, processingRequestsCount] = await Promise.all([
+export async function getSystemStats(): Promise<SystemStats> {
+    const [queueCount, processingRequestsCount, requestsProcessedTodayCount] = await Promise.all([
         getQueueCount(),
-        getRequestsWithStatusCount(RequestStaus.PROCESSING)
+        getRequestsWithStatusCount(RequestStatus.PROCESSING),
+        getRequestsProcessedTodayCount()
     ]);
-    
+
     return {
         callsOnQueue: queueCount,
-        callsInProcess: processingRequestsCount
+        callsInProcess: processingRequestsCount,
+        callsProcessedToday: requestsProcessedTodayCount
     };
+}
+
+async function getRequestsProcessedTodayCount() {
+    const docs = await StatsRepository.getStatsByName(StatsRepository.StatsName.REQUESTS_PROCESSED_TODAY);
+
+    if (!docs) {
+        console.log(`### WARN: There are no Stats object for ${StatsRepository.StatsName.REQUESTS_PROCESSED_TODAY} in the database. System statystics might be incorrect.`);
+    }
+    if (docs && docs.length > 1) {
+        console.log(`### WARN: There are more that one Stats object for ${StatsRepository.StatsName.REQUESTS_PROCESSED_TODAY} in the database. System statystics might be incorrect.`);
+    }
+    
+    const doc = (docs || [])[0];
+    return (doc || {}).value || 0;
 }

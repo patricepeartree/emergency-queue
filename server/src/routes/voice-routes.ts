@@ -1,12 +1,6 @@
 import { Router, Request, Response } from 'express';
-import {
-  askPatientAge,
-  askPatientName,
-  askPatientSymptoms,
-  finishCall,
-  savePermanently,
-  saveTemporarily,
-} from "../controllers/voice-controller";
+
+import { VoiceController } from "../controllers";
 
 const router = Router();
 
@@ -17,37 +11,37 @@ const router = Router();
 // })
 
 router.get('/incoming', (req: Request, res: Response) => {
-  const twimlResponse = askPatientName();
+    const twimlResponse = VoiceController.askPatientName();
 
-  res.writeHead(200, { 'Content-Type': 'text/xml' });
-  res.end(twimlResponse.toString());
+    res.writeHead(200, { 'Content-Type': 'text/xml' });
+    res.end(twimlResponse.toString());
 });
 
 router.post('/identification', (req: Request, res: Response) => {
-  saveTemporarily('name', req);
-  const twimlResponse = askPatientAge();
+    VoiceController.saveTemporarily('name', req);
+    const twimlResponse = VoiceController.askPatientAge();
 
-  res.writeHead(200, { 'Content-Type': 'text/xml' });
-  res.end(twimlResponse.toString());
+    res.writeHead(200, { 'Content-Type': 'text/xml' });
+    res.end(twimlResponse.toString());
 });
 
 router.post('/age', (req: Request, res: Response) => {
-  saveTemporarily('age', req);
-  const twimlResponse = askPatientSymptoms();
+    VoiceController.saveTemporarily('age', req);
+    const twimlResponse = VoiceController.askPatientSymptoms();
 
 
-  res.writeHead(200, { 'Content-Type': 'text/xml' });
-  res.end(twimlResponse.toString());
+    res.writeHead(200, { 'Content-Type': 'text/xml' });
+    res.end(twimlResponse.toString());
 });
 
 router.post('/symptoms', async (req: Request, res: Response) => {
-  saveTemporarily('symptoms', req);
-  const twimlResponse = finishCall();
+    VoiceController.saveTemporarily('symptoms', req);
+    const twimlResponse = VoiceController.finishCall();
 
-  res.writeHead(200, { 'Content-Type': 'text/xml' });
-  res.end(twimlResponse.toString());
+    res.writeHead(200, { 'Content-Type': 'text/xml' });
+    res.end(twimlResponse.toString());
 
-  await savePermanently(req);
+    await VoiceController.savePermanently(req);
 });
 
 export default router;

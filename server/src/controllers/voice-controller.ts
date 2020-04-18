@@ -1,9 +1,10 @@
 import { twiml } from 'twilio';
-import {Request} from "express";
-import Patient from "../model/patient";
-import {savePatientData} from "../services/voice-service";
+import { Request } from "express";
 
-const tempData = new Map<string,Patient>();
+import Patient from "../model/patient";
+import { VoiceService } from "../services";
+
+const tempData = new Map<string, Patient>();
 
 export function askPatientName() {
     const twimlResponse = new twiml.VoiceResponse();
@@ -82,6 +83,6 @@ export async function savePermanently(req: Request) {
     const { Caller } = req.body || {};
     const patient = tempData.get(Caller);
     if (patient) {
-        await savePatientData(patient);
+        await VoiceService.savePatientData(patient);
     }
 }

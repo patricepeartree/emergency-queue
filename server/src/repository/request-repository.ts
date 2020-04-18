@@ -1,5 +1,4 @@
 import { getDB } from "./init-mongo";
-
 import Patient from "../model/patient";
 import Request, { RequestStatus } from "../model/request";
 
@@ -12,10 +11,10 @@ export function saveToDatabase(request: Request): Promise<string>  {
     });
 }
 
-export function getRequestsWithStatusCount(status: RequestStatus): Promise<number> {
-    const db = getDB();
-    const collection = db.collection(COLLECTION_NAME);
-    return collection.find({
-        status
-    }).count();
-}
+// export function getRequestsWithStatusCount(status: RequestStatus): Promise<number> {
+//     const db = getDB();
+//     const collection = db.collection(COLLECTION_NAME);
+//     return collection.find({
+//         status
+//     }).count();
+// }

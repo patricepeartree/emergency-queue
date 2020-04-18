@@ -3,6 +3,7 @@ import { getDB } from "./init-mongo";
 const COLLECTION_NAME = "stats";
 
 export enum StatsName {
+    CALLS_IN_PROCESS = "callsInProcess",
     REQUESTS_PROCESSED_TODAY = "requestsProcessedToday"
 };
 

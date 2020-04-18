@@ -9,5 +9,6 @@ export enum RequestStatus {
 export default interface Request {
     patient: Patient;
     phoneNumber: string;
+    symptoms: string,
     status: RequestStatus
 }

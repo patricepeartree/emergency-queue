@@ -11,6 +11,8 @@ const router = Router();
 // })
 
 router.get('/incoming', (req: Request, res: Response) => {
+    const { Caller } = req.body || {};
+    VoiceController.saveRequestTemporarily(Caller,'phoneNumber', Caller);
     const twimlResponse = VoiceController.askPatientName();
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
@@ -18,7 +20,8 @@ router.get('/incoming', (req: Request, res: Response) => {
 });
 
 router.post('/identification', (req: Request, res: Response) => {
-    VoiceController.saveTemporarily('name', req);
+    const { Caller, SpeechResult } = req.body || {};
+    VoiceController.savePatientTemporarily(Caller,'name', SpeechResult);
     const twimlResponse = VoiceController.askPatientAge();
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
@@ -26,22 +29,23 @@ router.post('/identification', (req: Request, res: Response) => {
 });
 
 router.post('/age', (req: Request, res: Response) => {
-    VoiceController.saveTemporarily('age', req);
+    const { Caller, SpeechResult } = req.body || {};
+    VoiceController.savePatientTemporarily(Caller,'age', SpeechResult);
     const twimlResponse = VoiceController.askPatientSymptoms();
-
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
     res.end(twimlResponse.toString());
 });
 
 router.post('/symptoms', async (req: Request, res: Response) => {
-    VoiceController.saveTemporarily('symptoms', req);
+    const { Caller, SpeechResult } = req.body || {};
+    VoiceController.saveRequestTemporarily(Caller,'symptoms', SpeechResult);
     const twimlResponse = VoiceController.finishCall();
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
     res.end(twimlResponse.toString());
 
-    await VoiceController.savePermanently(req);
+    await VoiceController.savePermanently(Caller);
 });
 
 export default router;

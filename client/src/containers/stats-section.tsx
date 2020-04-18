@@ -21,7 +21,7 @@ function StatsSection() {
     }, []);
 
     const callsOnQueue = stats?.callsOnQueue != null ? stats.callsOnQueue : "?";
-    const callsInProcess = stats?.callsInProcess != null ? stats.callsOnQueue : "?";
+    const callsInProcess = stats?.callsInProcess != null ? stats.callsInProcess : "?";
     const callsProcessedToday = stats?.callsProcessedToday != null ? stats.callsProcessedToday : "?";
 
     return (

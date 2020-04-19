@@ -2,7 +2,7 @@ import { twiml } from 'twilio';
 import Request from "../model/request";
 
 import Patient from "../model/patient";
-import { VoiceService } from "../services";
+import { RequestService } from "../services";
 
 const tempData = new Map<string, Partial<Request>>();
 
@@ -91,6 +91,6 @@ export function saveRequestTemporarily(callerId: string, key: string, value: str
 export async function savePermanently(callerId: string) {
     const request = tempData.get(callerId);
     if (request) {
-        await VoiceService.saveNewRequest(request);
+        await RequestService.saveNewRequest(request);
     }
 }

@@ -1,9 +1,11 @@
 import * as SocketService from "./socket-service";
 import * as StatsService from "./stats-service";
-import * as VoiceService from "./voice-service";
+import * as RequestService from "./request-service";
+import * as QueueService from "./queue-service";
 
 export { 
     SocketService,
     StatsService,
-    VoiceService
+    RequestService,
+    QueueService
 };

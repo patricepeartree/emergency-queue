@@ -6,7 +6,7 @@ const initialState = {
     request: Request,
 };
 
-function appReducer(state = initialState, action) {
+const appReducer = (state = initialState, action) => {
     if (action.type === SAVE_CURRENT_REQUEST) {
         return {
             ...state,
@@ -16,6 +16,6 @@ function appReducer(state = initialState, action) {
         return state
     }
 
-}
+};
 
 export default appReducer

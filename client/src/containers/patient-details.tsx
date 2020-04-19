@@ -1,23 +1,17 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
-import APIUrls from "../constants/api-urls";
-import {saveRequest} from "../store/actions/actions";
-import Request from '../model/api/request'
-import {connect} from "react-redux";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 // https://react.semantic-ui.com/views/card/#content-extra-contentd
 
 function PatientDetails() {
     let history = useHistory();
+    const request = useSelector((state: RootState) => state.appReducer.request);
 
     function handleClick() {
-        axios.get(APIUrls.patient.next)
-            .then(res => {
-                saveRequest(res.data);
-                history.push("/landingPage");
-            });
+        console.log(request);
+        //history.push("/landingPage");
     }
 
     return (
@@ -30,9 +24,5 @@ function PatientDetails() {
     );
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-    saveRequest: (request: Request) => dispatch(saveRequest(request))
-});
 
-
-export default connect(mapDispatchToProps)(PatientDetails);
+export default PatientDetails;

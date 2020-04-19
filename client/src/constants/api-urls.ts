@@ -1,5 +1,5 @@
 const SERVER_URL = "http://localhost:8080"; // TODO this should come from an env
-const NEXT_REQUEST = `${SERVER_URL}/api/internal/`;
+const NEXT_REQUEST = `${SERVER_URL}/api/internal/next`;
 
 export default Object.freeze({
     // rest: {

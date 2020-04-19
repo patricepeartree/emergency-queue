@@ -27,19 +27,30 @@ function App() {
                         <StatsSection/>
                     </Sidebar>
                     <Sidebar.Pusher>
-                        <Router>
-                            <Switch>
-                                <Route path="/landingPage" component={LandingPage}/>
-                                <Route path="/patientDetails" component={PatientDetails}/>
-                                <Redirect from="/" exact to="/landingPage"/>
-                            </Switch>
-                        </Router>
+                        <MainContainer>
+                            <Router>
+                                <Switch>
+                                    <Route path="/landingPage" component={LandingPage}/>
+                                    <Route path="/patientDetails" component={PatientDetails}/>
+                                    <Redirect from="/" exact to="/landingPage"/>
+                                </Switch>
+                            </Router>
+                        </MainContainer>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </StretchedAppContent>
         </AppFlexLayout>
     );
 }
+
+const MainContainer = styled.div`
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   width: 100%;
+   height: 100%;
+   background-color: #bdbdbd;
+`;
 
 const AppFlexLayout = styled.div`
 height: 100%;
@@ -50,5 +61,6 @@ flex-direction: column;
 const StretchedAppContent = styled.div`
 flex-grow: 1;
 `;
+
 
 export default App;

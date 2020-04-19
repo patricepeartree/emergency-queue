@@ -1,5 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import {Button} from "semantic-ui-react";
+import styled from "styled-components";
 
 
 
@@ -11,12 +13,9 @@ function LandingPage() {
     }
 
     return (
-        <div>
-            <p>LANDING PAGE?!</p>
-            <button type="button" onClick={handleClick}>
+            <Button style={{marginLeft: 5 + '%', marginTop: 5 + '%'}} color='orange' size='huge' onClick={handleClick}>
                 Call patient
-            </button>
-        </div>
+            </Button>
     );
 }
 

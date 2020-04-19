@@ -1,4 +1,5 @@
 const SERVER_URL = "http://localhost:8080"; // TODO this should come from an env
+const NEXT_REQUEST = `${SERVER_URL}/api/internal/`;
 
 export default Object.freeze({
     // rest: {
@@ -13,6 +14,8 @@ export default Object.freeze({
       topic: {
         stats: 'stats',
       }
+    },
+    patient: {
+        next: `${NEXT_REQUEST}`
     }
   });
-  

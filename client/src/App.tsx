@@ -1,12 +1,17 @@
 import React from 'react';
+import { Route, Switch, BrowserRouter as Router, Redirect } from "react-router-dom";
 import {Sidebar, Segment, Header, Icon, Menu} from "semantic-ui-react";
+
 
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 
 import StatsSection from './containers/stats-section';
+import PatientDetails from "./containers/patient-details";
+import LandingPage from "./containers/landing-page";
 
 function App() {
+
     return (
         <>
             <Menu attached>
@@ -25,10 +30,22 @@ function App() {
                     visible
                     width="wide"
                 >
+
                     <StatsSection />
                 </Sidebar>
                 <Sidebar.Pusher>
+                    <div style={{ height: "100vh" }}>
+                        <Router>
+                            <Switch>
+                                <Route path="/landingPage" component={LandingPage} />
+                                <Route path="/patientDetails" component={PatientDetails} />
 
+                                <Redirect from="/" exact to="/landingPage" />
+
+                            </Switch>
+                        </Router>
+
+                    </div>
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
         </>

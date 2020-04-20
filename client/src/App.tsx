@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, BrowserRouter as Router, Redirect} from "react-router-dom";
+import {Route, Switch, MemoryRouter as Router, Redirect} from "react-router-dom";
 import {Sidebar, Segment, Header, Icon, Menu} from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -50,6 +50,7 @@ const MainContainer = styled.div`
    width: 100%;
    height: 100%;
    background-color: #bdbdbd;
+   padding: 5%;
 `;
 
 const AppFlexLayout = styled.div`

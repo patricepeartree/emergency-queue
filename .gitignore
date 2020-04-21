@@ -7,3 +7,6 @@
 # IDE
 .vscode
 .idea
+
+# environment variables
+*/.env

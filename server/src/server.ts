@@ -2,11 +2,14 @@ import express, { Express } from 'express';
 import http, { Server } from 'http';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import * as dotenv from "dotenv";
 
 import routes from './routes';
 import { SocketService } from "./services";
 
 import { connect } from "./repository/init-mongo";
+
+dotenv.config();
 
 const port = 8080; // TODO put this in an env variable
 

@@ -36,7 +36,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-react": "react-scripts start",
-    "start": "concurrently \"BROWSER=none npm run start-react\" \"wait-on http://localhost:3000 && electron .\""
+    "start": "concurrently \"npm run start-react\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"

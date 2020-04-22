@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {Button, Icon} from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -21,14 +21,17 @@ function LandingPage() {
             });
     }
 
+    // TODO styled-components
     return (
-        <div>
-            <Button style={{marginLeft: 5 + '%'}} color='orange' size='huge' onClick={handleClick}>
+        <>
+            <Button style={{ marginLeft: 5 + '%' }} color='orange' size='huge' onClick={handleClick}>
                 Next request
             </Button>
-                <Icon name="user doctor" size="massive" style={{transform: 'scale('+5+')'
-                    + 'translateX('+9+'vw) translateY('+11+'vh)', color: '#b0b0b0'}}/>
-        </div>
+            <Icon name="user doctor" size="massive" style={{
+                transform: 'scale(' + 5 + ')'
+                    + 'translateX(' + 9 + 'vw) translateY(' + 11 + 'vh)', color: '#b0b0b0'
+            }} />
+        </>
     );
 }
 

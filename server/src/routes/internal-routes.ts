@@ -1,5 +1,3 @@
-import { jwt, twiml } from "twilio";
-
 import { Router, Request, Response } from 'express';
 import { InternalController } from '../controllers';
 
@@ -15,50 +13,24 @@ router.get("/next", async (req: Request, res: Response) => {
     }
 });
 
-router.get("/call/token", async (req: Request, res: Response) => {
-    // TODO either validate on server boot that these variables exist, or handle here error
-    if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.RESPONDERS_TWILIO_TWIML_APP_SID) {
-        const capability = new jwt.ClientCapability({
-            accountSid: process.env.TWILIO_ACCOUNT_SID,
-            authToken: process.env.TWILIO_AUTH_TOKEN,
-            ttl: 600 // TODO Time To Live, only the time necessary to establish the connection, should also be an env
-        });
-
-        capability.addScope(
-            new jwt.ClientCapability.OutgoingClientScope({
-                applicationSid: process.env.RESPONDERS_TWILIO_TWIML_APP_SID
-            })
-        );
-
-        const token = capability.toJwt();
-
-        res.send({
-            token: token,
-        });
-    }
-});
-
-router.post("/call/dial", (request, response) => {
-    const voiceResponse = new twiml.VoiceResponse();
-
-    const dial = voiceResponse.dial({
-        callerId: process.env.RESPONDERS_TWILIO_NUMBER,
-        answerOnBridge: true,
-        
+router.get("/call/token", (req: Request, res: Response) => {
+    const token = InternalController.generateResponderCapabilityToken();
+    res.send({
+        token
     });
-
-    dial.number({
-        statusCallback: "/api/internal/call/status",
-        statusCallbackMethod: "POST",
-        statusCallbackEvent: ["answered", "completed", "initiated", "ringing"]
-    }, request.body.number);
-    
-    response.type('text/xml');
-    response.send(voiceResponse.toString());
 });
 
-router.post("/call/status", (request, response) => {
-    console.log(request.body);
+router.post("/call/dial", (req: Request, res: Response) => {
+    const { number } = req.body || {};
+    const twimlResponse = InternalController.dialPatient(number);
+    res.type("text/xml");
+    res.send(twimlResponse.toString());
+});
+
+router.post("/call/completed", (req: Request, res: Response) => {
+    const { CallStatus, CallDuration } = req.body || {};
+    InternalController.processCallCompleted(CallStatus, CallDuration);
+    res.end();
 });
 
 export default router;

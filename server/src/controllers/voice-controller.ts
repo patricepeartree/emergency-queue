@@ -13,12 +13,12 @@ export function askPatientName() {
         input: ["speech"],
         action: "/api/voice/identification",
         timeout: 3,
-        language: "pt-PT"
+        language: "en-GB"
     });
 
     gather.say({
-        language: "pt-PT"
-    }, 'Chegou à linha saúde 24. Diga-me o seu nome');
+        language: "en-GB"
+    }, 'You have called the Emergency Health Line. Please tell me your name.');
 
     return twimlResponse;
 }
@@ -30,12 +30,12 @@ export function askPatientAge() {
         input: ["speech"],
         action: "/api/voice/age",
         timeout: 3,
-        language: "pt-PT"
+        language: "en-GB"
     });
 
     gather.say({
-        language: "pt-PT"
-    }, 'Diga-me a sua idade');
+        language: "en-GB"
+    }, 'Please tell me your age.');
 
     return twimlResponse;
 }
@@ -47,12 +47,12 @@ export function askPatientSymptoms() {
         input: ["speech"],
         action: "/api/voice/symptoms",
         timeout: 3,
-        language: "pt-PT"
+        language: "en-GB"
     });
 
     gather.say({
-        language: "pt-PT"
-    }, 'Por favor, descreva os seus sintomas');
+        language: "en-GB"
+    }, 'What are your symptoms?');
 
     return twimlResponse;
 }
@@ -61,8 +61,9 @@ export function finishCall() {
     const twimlResponse = new twiml.VoiceResponse();
 
     twimlResponse.say({
-        language: "pt-PT",
-    }, 'Obrigada, irá receber uma SMS com o número do seu pedido e instruções para consultar o tempo de espera.');
+        language: "en-GB"
+    }, 'Thank you, you will receive a SMS with a code of your request' +
+        'and instructions to know your estimated holding time.');
 
     twimlResponse.hangup();
 

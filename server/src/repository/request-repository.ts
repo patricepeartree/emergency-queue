@@ -1,6 +1,7 @@
 import { getDB } from "./init-mongo";
 import Request from "../model/request";
 import { ObjectID } from "mongodb";
+import {RequestErrors} from "../utils/request-util";
 
 
 const COLLECTION_NAME = "requests";
@@ -27,8 +28,8 @@ export function getRequestId(smsId: number) {
     const collection = db.collection(COLLECTION_NAME);
     return collection.findOne( {
         smsId: smsId
-    }).then((resp) =>{
-        console.log(resp);
+    }).then((resp) => {
+        if (resp === null) throw RequestErrors.NOT_A_VALID_ID;
         return resp._id;
     } );
 }

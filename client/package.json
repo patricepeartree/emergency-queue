@@ -28,6 +28,7 @@
     "semantic-ui-react": "^0.88.2",
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.1.0",
+    "twilio-client": "^1.10.1",
     "typescript": "^3.7.5"
   },
   "scripts": {

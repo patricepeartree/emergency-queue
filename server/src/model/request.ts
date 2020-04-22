@@ -10,5 +10,6 @@ export default interface Request {
     patient: Patient;
     phoneNumber: string;
     symptoms: string,
-    status: RequestStatus
+    status: RequestStatus,
+    smsId: number,
 }

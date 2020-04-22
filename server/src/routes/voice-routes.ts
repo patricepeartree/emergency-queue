@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 
-import { VoiceController } from "../controllers";
+import {TextController, VoiceController} from "../controllers";
 
 const router = Router();
 
@@ -45,7 +45,10 @@ router.post('/symptoms', async (req: Request, res: Response) => {
     res.writeHead(200, { 'Content-Type': 'text/xml' });
     res.end(twimlResponse.toString());
 
-    await VoiceController.savePermanently(Caller);
+    const smsId = await VoiceController.savePermanently(Caller);
+    if (smsId){
+        await TextController.sendSmsId(smsId, Caller);
+    }
 });
 
 export default router;

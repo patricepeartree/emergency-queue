@@ -22,6 +22,17 @@ export function getRequestById(id: string, projection?: object): Promise<Request
     });
 }
 
+export function getRequestId(smsId: number) {
+    const db = getDB();
+    const collection = db.collection(COLLECTION_NAME);
+    return collection.findOne( {
+        smsId: smsId
+    }).then((resp) =>{
+        console.log(resp);
+        return resp._id;
+    } );
+}
+
 // export function getRequestsWithStatusCount(status: RequestStatus): Promise<number> {
 //     const db = getDB();
 //     const collection = db.collection(COLLECTION_NAME);

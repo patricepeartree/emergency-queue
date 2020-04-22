@@ -1,8 +1,8 @@
-import { twiml } from 'twilio';
+import {twiml} from 'twilio';
 import Request from "../model/request";
 
 import Patient from "../model/patient";
-import { RequestService } from "../services";
+import {RequestService} from "../services";
 
 const tempData = new Map<string, Partial<Request>>();
 
@@ -89,9 +89,9 @@ export function saveRequestTemporarily(callerId: string, key: string, value: str
     tempData.set(callerId, finalRequest);
 }
 
-export async function savePermanently(callerId: string) {
+export function savePermanently(callerId: string) {
     const request = tempData.get(callerId);
     if (request) {
-        await RequestService.saveNewRequest(request);
+        return RequestService.saveNewRequest(request);
     }
 }

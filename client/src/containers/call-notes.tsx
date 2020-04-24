@@ -23,7 +23,11 @@ function CallNotes() {
 
     return (
         <Form>
-            <TextArea onChange={handleNotesChange} placeholder="Tell us more" />
+            <TextArea
+                placeholder="Notes about call"
+                onChange={handleNotesChange}
+                rows={10}
+            />
         </Form>
     );
 }

@@ -28,8 +28,9 @@ function LandingPage() {
                 Next request
             </Button>
             <Icon name="user doctor" size="massive" style={{
-                transform: 'scale(' + 6 + ')'
-                    + 'translateX(' + 5 + 'vw) translateY(' + 8 + 'vh)', color: '#b0b0b0', position: 'fixed'
+                transform: "scale(6) translateX(8vw) translateY(8vh)",
+                color: "#b0b0b0",
+                position: "fixed"
             }} />
         </>
     );

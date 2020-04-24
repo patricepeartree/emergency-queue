@@ -1,48 +1,27 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import Axios from "axios";
 import styled from "styled-components";
 import { Device, Connection } from "twilio-client";
-import { Icon, Button, Card, Segment, SemanticCOLORS } from "semantic-ui-react";
+import { Icon, Button, Card, Segment } from "semantic-ui-react";
 
 import { RootState } from "../store/store";
 import APIUrls from "../constants/api-urls";
 
-const CALL_STATUS_NOT_STARTED = 0;
-const CALL_STATUS_IN_PROGRESS = 1;
-const CALL_STATUS_COMPLETED = 2;
-// enum CallStatus {
-//     NOT_STARTED,
-//     IN_PROGRESS,
-//     COMPLETED
-// }
-
-const DIALLER_COLOR: { [key: number]: SemanticCOLORS } = Object.freeze({
-    [CALL_STATUS_NOT_STARTED]: "yellow" as SemanticCOLORS,
-    [CALL_STATUS_IN_PROGRESS]: "teal" as SemanticCOLORS,
-    [CALL_STATUS_COMPLETED]: "grey" as SemanticCOLORS
-});
-
-const DIALLER_MESSAGE: { [key: number]: string } = Object.freeze({
-    [CALL_STATUS_NOT_STARTED]: "Dial to connect to patient",
-    [CALL_STATUS_IN_PROGRESS]: "Call in progress...",
-    [CALL_STATUS_COMPLETED]: "Call ended"
-});
-
 function BrowserDialler() {
     const phoneNumber: string = useSelector((state: RootState) => state.appReducer.request.phoneNumber);
 
-    const [callStatus, setCallStatus] = useState(CALL_STATUS_NOT_STARTED);
+    const [callInProgress, setCallInProgress] = useState<boolean>(false);
 
     const twilioDevice = useRef<Device>();
     const twilioConnection = useRef<Connection>();
 
     function startCall() {
-        if (callStatus !== CALL_STATUS_NOT_STARTED) {
+        if (callInProgress) {
             return;
         }
 
-        setCallStatus(CALL_STATUS_IN_PROGRESS);
+        setCallInProgress(true);
 
         Axios.get(APIUrls.rest.callPatient.token).then(resp => {
             const { data } = resp || {};
@@ -74,26 +53,26 @@ function BrowserDialler() {
         if (twilioDevice.current) {
             twilioDevice.current.destroy();
         }
-        setCallStatus(CALL_STATUS_COMPLETED);
+        setCallInProgress(false);
     }
 
     return (
         <DiallerCard centered>
-            <DiallerSegment basic inverted color={DIALLER_COLOR[callStatus]} textAlign="center">
+            <DiallerSegment basic inverted color={callInProgress ? "teal" : "grey"} textAlign="center">
                 <Icon name="user circle" size="massive" />
             </DiallerSegment>
             <Card.Content textAlign="center">
                 <Card.Meta>
-                    {DIALLER_MESSAGE[callStatus]}
+                    {callInProgress ? "Call in progress..." : "Dial to connect to patient"}
                 </Card.Meta>
-                {callStatus === CALL_STATUS_NOT_STARTED
+                {callInProgress
                     ? (
-                        < DiallerButton icon onClick={startCall}>
-                            <StartCallcon circular inverted color="green" name="phone" size="big" />
+                        <DiallerButton icon onClick={endCall}>
+                            <EndCallIcon circular inverted name="phone" size="big" color="red" />
                         </DiallerButton>
                     ) : (
-                        <DiallerButton icon disabled={callStatus !== CALL_STATUS_IN_PROGRESS} onClick={endCall}>
-                            <EndCallIcon circular inverted color={callStatus === CALL_STATUS_IN_PROGRESS ? "red" : "grey"} name="phone" size="big" />
+                        < DiallerButton icon onClick={startCall}>
+                            <StartCallcon circular inverted name="phone" size="big" color="green" />
                         </DiallerButton>
                     )}
             </Card.Content>

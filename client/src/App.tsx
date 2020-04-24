@@ -22,11 +22,9 @@ function App() {
                 <Menu.Item position="right" name="EXIT"/>
             </Menu>
             <StretchedAppContent>
-                <Sidebar.Pushable attached>
-                    <Sidebar visible animation="push" width="wide">
-                        <StatsSection/>
-                    </Sidebar>
-                    <Sidebar.Pusher>
+                <SideContainer>
+                    <StatsSection/>
+                </SideContainer>
                         <MainContainer>
                             <Router>
                                 <Switch>
@@ -36,21 +34,15 @@ function App() {
                                 </Switch>
                             </Router>
                         </MainContainer>
-                    </Sidebar.Pusher>
-                </Sidebar.Pushable>
             </StretchedAppContent>
         </AppFlexLayout>
     );
 }
 
 const MainContainer = styled.div`
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   width: 100%;
-   height: 100%;
    background-color: #bdbdbd;
    padding: 5%;
+   flex-grow:1;
 `;
 
 const AppFlexLayout = styled.div`
@@ -61,6 +53,11 @@ flex-direction: column;
 
 const StretchedAppContent = styled.div`
 flex-grow: 1;
+display: flex;
+`;
+
+const SideContainer = styled.div`
+margin: 3vw;
 `;
 
 

@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import Axios from "axios";
 import styled from "styled-components";
 import { Device, Connection } from "twilio-client";
 import { Icon, Button, Card, Segment, SemanticCOLORS } from "semantic-ui-react";
 
+import { RootState } from "../store/store";
 import APIUrls from "../constants/api-urls";
 
 const CALL_STATUS_NOT_STARTED = 0;
@@ -28,6 +30,8 @@ const DIALLER_MESSAGE: { [key: number]: string } = Object.freeze({
 });
 
 function BrowserDialler() {
+    const phoneNumber: string = useSelector((state: RootState) => state.appReducer.request.phoneNumber);
+
     const [callStatus, setCallStatus] = useState(CALL_STATUS_NOT_STARTED);
 
     const twilioDevice = useRef<Device>();
@@ -51,7 +55,7 @@ function BrowserDialler() {
                 twilioDevice.current = device;
 
                 device.on("ready", () => {
-                    const connection = device.connect({ number: "+351968405207" });
+                    const connection = device.connect({ number: phoneNumber });
                     twilioConnection.current = connection;
                 });
 

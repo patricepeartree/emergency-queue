@@ -1,5 +1,5 @@
 export default interface SystemStats {
     callsOnQueue: number;
-    callsInProcess: number;
+    callsInProgress: number;
     callsProcessedToday: number;
 }

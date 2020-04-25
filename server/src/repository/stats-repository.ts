@@ -3,7 +3,7 @@ import { getDB } from "./init-mongo";
 const COLLECTION_NAME = "stats";
 
 export enum StatsName {
-    CALLS_IN_PROCESS = "callsInProcess",
+    CALLS_IN_PROGRESS = "callsInProgress",
     REQUESTS_PROCESSED_TODAY = "requestsProcessedToday",
     AVERAGE_CALL_DURATION = "averageCallDuration"
 }
@@ -51,6 +51,30 @@ export function updateAvgCallDuration(duration: number) {
         },
         { $unset: ["totalSeconds", "updatedCallsCount"] }
     ], {
+        upsert: true
+    });
+}
+
+export function incrementStatsValue(name: StatsName) {
+    const db = getDB();
+    const collection = db.collection(COLLECTION_NAME);
+    return collection.updateOne({
+        name,
+    }, {
+        $inc: { value: 1 }
+    }, {
+        upsert: true
+    });
+}
+
+export function decrementStatsValue(name: StatsName) {
+    const db = getDB();
+    const collection = db.collection(COLLECTION_NAME);
+    return collection.updateOne({
+        name,
+    }, {
+        $inc: { value: -1 }
+    }, {
         upsert: true
     });
 }

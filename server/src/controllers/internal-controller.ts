@@ -47,11 +47,16 @@ export function dialPatient(number: string) {
         statusCallbackEvent: ["completed"]
     }, number);
 
+    StatsService.handleNewCallInProgress();
+
     return voiceResponse;
 }
 
-// The completed event is fired when the call is completed, regardless of the termination status: busy, canceled, completed, failed, or no-answer. 
+
 export function processCallCompleted(callStatus: string, duration: string) {
+    StatsService.handleCallFinished();
+
+    // final call status can be one of "busy", "canceled", "completed", "failed" or "no-answer"
     if (callStatus === "completed") {
         // TODO handle error on updating document
         StatsRepository.updateAvgCallDuration(parseInt(duration));

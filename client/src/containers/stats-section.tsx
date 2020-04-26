@@ -21,13 +21,13 @@ function StatsSection() {
     }, []);
 
     const callsOnQueue = stats?.callsOnQueue != null ? stats.callsOnQueue : "?";
-    const callsInProcess = stats?.callsInProcess != null ? stats.callsInProcess : "?";
+    const callsInProgress = stats?.callsInProgress != null ? stats.callsInProgress : "?";
     const callsProcessedToday = stats?.callsProcessedToday != null ? stats.callsProcessedToday : "?";
 
     return (
         <>
             <Statistic label="Calls in Queue" value={callsOnQueue} icon="clock outline" color="yellow" />
-            <Statistic label="Calls in Process" value={callsInProcess} icon="call" color="teal" />
+            <Statistic label="Calls in Progress" value={callsInProgress} icon="call" color="teal" />
             <Statistic label="Calls Processed Today" value={callsProcessedToday} icon="check" color="green" />
         </>
     );

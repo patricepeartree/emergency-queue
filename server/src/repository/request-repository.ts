@@ -1,7 +1,8 @@
 import { getDB } from "./init-mongo";
 import Request from "../model/request";
 import { ObjectID } from "mongodb";
-import {RequestErrors} from "../utils/request-util";
+import { RequestErrors } from "../utils/request-util";
+import WelfareCheckFrequency from "../model/welfare-check-frequency";
 
 
 const COLLECTION_NAME = "requests";
@@ -26,18 +27,30 @@ export function getRequestById(id: string, projection?: object): Promise<Request
 export function getRequestId(smsId: number) {
     const db = getDB();
     const collection = db.collection(COLLECTION_NAME);
-    return collection.findOne( {
+    return collection.findOne({
         smsId: smsId
     }).then((resp) => {
         if (resp === null) throw RequestErrors.NOT_A_VALID_ID;
         return resp._id;
-    } );
+    });
 }
 
-// export function getRequestsWithStatusCount(status: RequestStatus): Promise<number> {
-//     const db = getDB();
-//     const collection = db.collection(COLLECTION_NAME);
-//     return collection.find({
-//         status
-//     }).count();
-// }
+export function updateRequest(id: string, date: Date, notes: string, welfareCheckFrequency: WelfareCheckFrequency) {
+    const db = getDB();
+    const collection = db.collection(COLLECTION_NAME);
+    return collection.updateOne({
+        _id: new ObjectID(id),
+    }, [
+        {
+            $set: {
+                callLogs: {
+                    $concatArrays: ["$callLogs", [{
+                        date,
+                        notes
+                    }]]
+                },
+                welfareCheckFrequency
+            }
+        }
+    ]);
+}

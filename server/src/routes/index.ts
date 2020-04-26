@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
 
 import VoiceRoutes from "./voice-routes";
-import InternalRoutes from "./internal-routes";
 import TextRoutes from "./text-routes";
+import InternalRoutes from "./internal";
 
 const router = Router();
 

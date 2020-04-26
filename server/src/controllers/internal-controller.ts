@@ -1,9 +1,9 @@
-import { RequestService, QueueService, StatsService } from "../services";
 import { twiml, jwt } from "twilio";
 
 import Request from "../model/request";
-import { StatsRepository } from "../repository";
-
+import PatientFinishRequest from "../model/api/patient-finish-request";
+import { RequestService, QueueService, StatsService, WelfareChecksService } from "../services";
+import { StatsRepository, RequestRepository } from "../repository";
 
 export async function getNextRequestInQueue(): Promise<Request | null> {
     const id = await QueueService.getNextIdInQueue();
@@ -60,5 +60,15 @@ export function processCallCompleted(callStatus: string, duration: string) {
     if (callStatus === "completed") {
         // TODO handle error on updating document
         StatsRepository.updateAvgCallDuration(parseInt(duration));
+    }
+}
+
+export async function finishRequest(patientFinishRequest: PatientFinishRequest) {
+    const { id, notes, welfareFrequency } = patientFinishRequest;
+    const date = new Date();
+
+    await RequestRepository.updateRequest(id, date, notes, welfareFrequency);
+    if (welfareFrequency) {
+        await WelfareChecksService.setWelfareCheck(id, date, welfareFrequency);
     }
 }

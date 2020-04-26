@@ -1,5 +1,5 @@
 import { StatsRepository, QueueRepository, RequestRepository } from "../repository";
-import { SystemStats } from "../model";
+import SystemStats from "../model/system-stats";
 import { StatsName } from "../repository/stats-repository";
 
 

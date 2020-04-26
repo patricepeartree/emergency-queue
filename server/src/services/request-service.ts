@@ -1,8 +1,6 @@
 import { RequestRepository, QueueRepository } from "../repository";
 import Request, { RequestStatus } from "../model/request";
-import {getNextId} from "../utils/request-util";
-import {TextService} from "./index";
-
+import { getNextId } from "../utils/request-util";
 
 export async function saveNewRequest(request: Partial<Request>): Promise<number> {
     const smsId = getNextId();
@@ -18,7 +16,7 @@ export async function saveNewRequest(request: Partial<Request>): Promise<number>
         ...finalRequest,
         ...request,
     };
-    
+
     const id = await RequestRepository.saveToDatabase(finalRequest);
     await QueueRepository.addToQueue(id);
     return smsId;

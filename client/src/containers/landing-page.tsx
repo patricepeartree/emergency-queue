@@ -2,11 +2,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
-import styled from "styled-components";
 import axios from "axios";
 
 import APIUrls from "../constants/api-urls";
 import { saveRequest } from "../store/actions/actions";
+import styled from "styled-components";
 
 function LandingPage() {
     const dispatch = useDispatch();
@@ -24,9 +24,9 @@ function LandingPage() {
     // TODO styled-components
     return (
         <>
-            <Button style={{ marginLeft: 5 + '%' }} color='orange' size='huge' onClick={handleClick}>
+            <NextRequestButton color='orange' size='huge' onClick={handleClick}>
                 Next request
-            </Button>
+            </NextRequestButton>
             <Icon name="user doctor" size="massive" style={{
                 transform: "scale(6) translateX(8vw) translateY(8vh)",
                 color: "#b0b0b0",
@@ -35,5 +35,12 @@ function LandingPage() {
         </>
     );
 }
+
+const NextRequestButton = styled(Button)`
+    &.ui.button {
+        margin-left: 5%;
+    }
+
+`;
 
 export default LandingPage;

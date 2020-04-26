@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch, MemoryRouter as Router, Redirect} from "react-router-dom";
-import {Sidebar, Segment, Header, Icon, Menu} from "semantic-ui-react";
+import { Header, Icon, Menu} from "semantic-ui-react";
 import styled from "styled-components";
 
 import './App.css';

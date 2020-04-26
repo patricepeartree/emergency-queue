@@ -44,10 +44,13 @@ export function updateRequest(id: string, date: Date, notes: string, welfareChec
         {
             $set: {
                 callLogs: {
-                    $concatArrays: ["$callLogs", [{
-                        date,
-                        notes
-                    }]]
+                    $concatArrays: [
+                        { $ifNull: ["$callLogs", []] },
+                        [{
+                            date,
+                            notes
+                        }]
+                    ]
                 },
                 welfareCheckFrequency
             }

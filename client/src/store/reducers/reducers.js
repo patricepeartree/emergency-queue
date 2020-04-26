@@ -1,9 +1,9 @@
-import Request from '../../model/api/request'
-import { SAVE_CURRENT_REQUEST, SAVE_CALL_NOTES } from "../actions/types";
+import {SAVE_CURRENT_REQUEST, SAVE_CALL_NOTES, SAVE_WELFARE_FREQUENCY} from "../actions/types";
 
 const initialState = {
     request: null,
-    callNotes: null
+    callNotes: null,
+    welfareFrequency: null,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -18,6 +18,12 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 callNotes: action.payload
+            };
+
+        case SAVE_WELFARE_FREQUENCY:
+            return {
+                ...state,
+                welfareFrequency: action.payload
             };
 
         default:

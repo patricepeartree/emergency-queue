@@ -3,7 +3,8 @@ import * as StatsService from "./stats-service";
 import * as RequestService from "./request-service";
 import * as QueueService from "./queue-service";
 import * as TextService from "./text-service";
-import * as WelfareChecksService from "./welfare-checks-service";
+import * as WelfareChecksService from "./welfare-checks-service"
+import * as AgendaService from "./agenda-service";
 
 export { 
     SocketService,
@@ -11,5 +12,6 @@ export {
     RequestService,
     QueueService,
     TextService,
-    WelfareChecksService
+    WelfareChecksService,
+    AgendaService
 };

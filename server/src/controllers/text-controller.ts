@@ -2,6 +2,7 @@ import {Twilio, twiml} from "twilio";
 import {TextService} from "../services";
 import {RequestErrors} from "../utils/request-util";
 
+// FIXME hardcoded credentials, put in env variables
 const accountSid = 'AC47b85ae425ff7eaf33b7e7cec6677557';
 const authToken = '989248adebd4c3d425e095200c30cc40';
 const client = new Twilio(accountSid, authToken);

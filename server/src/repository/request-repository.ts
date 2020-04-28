@@ -38,6 +38,16 @@ export function getRequestId(smsId: number) {
 export function updateRequest(id: string, date: Date, notes: string, welfareCheckFrequency: WelfareCheckFrequency) {
     const db = getDB();
     const collection = db.collection(COLLECTION_NAME);
+
+    let newCallLogs: { date: Date, notes: string }[] = [];
+
+    if (!!(notes || "").trim()) {
+        newCallLogs = [{
+            date,
+            notes
+        }];
+    }
+
     return collection.updateOne({
         _id: new ObjectID(id),
     }, [
@@ -46,10 +56,7 @@ export function updateRequest(id: string, date: Date, notes: string, welfareChec
                 callLogs: {
                     $concatArrays: [
                         { $ifNull: ["$callLogs", []] },
-                        [{
-                            date,
-                            notes
-                        }]
+                        newCallLogs
                     ]
                 },
                 welfareCheckFrequency

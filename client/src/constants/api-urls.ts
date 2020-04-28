@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:8080"; // TODO this should come from an env
+const SERVER_URL = "http://localhost:8080"; // FIXME env variable
 
 export default Object.freeze({
     rest: {

@@ -86,7 +86,6 @@ export function saveRequestTemporarily(callerId: string, key: string, value: str
         ...request,
         [key]: value
     };
-    console.log(finalRequest);
     tempData.set(callerId, finalRequest);
 }
 

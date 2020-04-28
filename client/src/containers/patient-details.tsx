@@ -16,7 +16,7 @@ import {saveWelfareFrequency} from "../store/actions/actions";
 
 function PatientDetails() {
     const request: Request = useSelector((state: RootState) => state.appReducer.request);
-    const { _id, welfareCheckFrequency, symptoms, patient } = request;
+    const {_id, welfareCheckFrequency, symptoms, patient} = request;
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -68,7 +68,6 @@ function PatientDetails() {
                                 ]}
                             />
                         </DetailsItemGroup>
-
                     </Segment>
                     {request.callLogs && (
                         <Segment compact basic>
@@ -86,7 +85,6 @@ function PatientDetails() {
                             </DetailsItemGroupNotes>
                         </Segment>)
                     }
-                    <span>{finishedPatient.welfareFrequency}</span>
                     <BottomSegment basic>
                         <Dropdown placeholder='Welfare check frequency' fluid clearable options={options} selection
                                   defaultValue={request.welfareCheckFrequency}

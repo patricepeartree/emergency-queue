@@ -27,6 +27,14 @@ export function getRequestById(id: string): Promise<Request | null> {
         patient: 1,
         phoneNumber: 1,
         symptoms: 1,
+    });
+}
+
+export function getWelfareCheckRequestById(id: string): Promise<Request | null> {
+    return RequestRepository.getRequestById(id, {
+        patient: 1,
+        phoneNumber: 1,
+        symptoms: 1,
         callLogs: 1,
         welfareCheckFrequency: 1
     });

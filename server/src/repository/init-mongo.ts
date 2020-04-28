@@ -1,35 +1,35 @@
-import {Db, MongoClient} from 'mongodb';
-import assert from 'assert';
+import { Db, MongoClient } from "mongodb";
 
 // Connection URL
-const url = 'mongodb://mongo:27017';
+const MONGO_URL = 'mongodb://mongo:27017'; // FIXME env variable
 
 // Database Name
-const dbName = 'emergencyQueue';
+const APP_DATABASE_NAME = 'emergencyQueue';
 
 // Create a new MongoClient
-const client = new MongoClient(url);
+const client = new MongoClient(MONGO_URL);
 
 // Database variable
 let db: Db;
 
 // Use connect method to connect to the Server
-export function connect(callback: Function) {
-    client.connect((err) => {
-        assert.equal(null, err);
-        console.log("Connected successfully to server");
-        db = client.db(dbName);
-        callback();
+export function initMongoConnection(): Promise<Db> {
+    return new Promise((resolve, reject) => {
+        client.connect((err) => {
+            if (err) {
+                reject(err);
+            }
+            console.log("Connected successfully to Mongo DB.");
+            db = client.db(APP_DATABASE_NAME);
+            resolve(db);
+        });
     });
 }
 
-export function getDB() {
+export function getDB(): Db {
     return db;
 }
 
 export function close() {
     client.close();
 }
-
-
-

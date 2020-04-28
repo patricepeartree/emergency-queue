@@ -53,9 +53,9 @@ const NextRequestButton = styled(Button)`
 `;
 
 const LogoBackdrop = styled(Icon)`
-        transform: scale(6) translateX(6vw) translateY(8vh);
-        color: #b0b0b0;
-        position: fixed;
+        transform: scale(6)  translateX(1em) translateY(0.7em);
+        color: rgba(176, 176, 176, 0.4);
+        position: absolute;
 `;
 
 export default LandingPage;

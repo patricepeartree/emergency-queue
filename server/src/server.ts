@@ -5,13 +5,12 @@ import cors from 'cors';
 import * as dotenv from "dotenv";
 
 import routes from './routes';
-import { SocketService } from "./services";
-
-import { connect } from "./repository/init-mongo";
+import { SocketService, AgendaService } from "./services";
+import { initMongoConnection } from "./repository/init-mongo";
 
 dotenv.config();
 
-const port = 8080; // TODO put this in an env variable
+const port = 8080; // FIXME env variable
 
 const app: Express = express();
 const server: Server = http.createServer(app);
@@ -34,7 +33,9 @@ app.use("/api", routes);
 // initialize sockets
 SocketService.initSocket(server);
 
-// connect to Mongo and bootstrap http server
-connect(() => {
-    server.listen(port, () => console.log("Go ahead for server!"))
-});
+// connect to Mongo, start Agenda and boot HTTP server
+(async function bootServer() {
+    const db = await initMongoConnection();
+    await AgendaService.initAgenda(db);
+    server.listen(port, () => console.log("Go ahead for server!"));
+})();

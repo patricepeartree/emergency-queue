@@ -57,7 +57,7 @@ function BrowserDialler() {
     }
 
     return (
-        <DiallerCard centered>
+        <DiallerCard>
             <DiallerSegment basic inverted color={callInProgress ? "teal" : "grey"} textAlign="center">
                 <Icon name="user circle" size="massive" />
             </DiallerSegment>
@@ -82,6 +82,10 @@ function BrowserDialler() {
 
 const DiallerCard = styled(Card)`
     height: 100%;
+    
+    &.ui.card {
+        width: 100%;
+    }
 
     &.ui.card>.content {
         flex-grow: unset;

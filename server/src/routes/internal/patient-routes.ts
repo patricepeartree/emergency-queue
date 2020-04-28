@@ -16,6 +16,8 @@ router.get("/next", async (req: Request, res: Response) => {
 
 router.post("/finish", async (req: Request, res: Response) => {
     const patientFinishRequest = req.body as PatientFinishRequest;
+    console.log(patientFinishRequest);
+
     await InternalController.finishRequest(patientFinishRequest);
     res.send();
 });

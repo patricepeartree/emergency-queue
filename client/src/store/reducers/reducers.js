@@ -1,4 +1,4 @@
-import {SAVE_CURRENT_REQUEST, SAVE_CALL_NOTES, SAVE_WELFARE_FREQUENCY} from "../actions/types";
+import {SAVE_CURRENT_REQUEST, SAVE_CALL_NOTES, SAVE_WELFARE_FREQUENCY, RESET_PATIENT_DATA} from "../actions/types";
 
 const initialState = {
     request: null,
@@ -12,6 +12,7 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 request: action.payload,
+               // welfareFrequency: action.payload.welfareCheckFrequency,
             };
 
         case SAVE_CALL_NOTES:
@@ -24,6 +25,13 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 welfareFrequency: action.payload
+            };
+
+        case RESET_PATIENT_DATA:
+            return {
+                request: null,
+                callNotes: null,
+                welfareFrequency: null,
             };
 
         default:

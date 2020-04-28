@@ -6,7 +6,8 @@ export default Object.freeze({
         callPatient: {
             token: `${SERVER_URL}/api/internal/call/token`
         },
-        finishPatient:`${SERVER_URL}/api/internal/patient/finish`
+        finishPatient:`${SERVER_URL}/api/internal/patient/finish`,
+        getNextWelfare: `${SERVER_URL}/api/internal/patient/next/w`
     },
     socket: {
         endpoint: `${SERVER_URL}`, // socket has no custom path

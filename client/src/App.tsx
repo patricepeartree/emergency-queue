@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch, MemoryRouter as Router, Redirect} from "react-router-dom";
-import { Header, Icon, Menu} from "semantic-ui-react";
+import {Header, Icon, Menu} from "semantic-ui-react";
 import styled from "styled-components";
 
 import './App.css';
@@ -25,15 +25,15 @@ function App() {
                 <SideContainer>
                     <StatsSection/>
                 </SideContainer>
-                        <MainContainer>
-                            <Router>
-                                <Switch>
-                                    <Route path="/landingPage" component={LandingPage}/>
-                                    <Route path="/patientDetails" component={PatientDetails}/>
-                                    <Redirect from="/" exact to="/landingPage"/>
-                                </Switch>
-                            </Router>
-                        </MainContainer>
+                <MainContainer>
+                    <Router>
+                        <Switch>
+                            <Route path="/landingPage" component={LandingPage}/>
+                            <Route path="/patientDetails" component={PatientDetails}/>
+                            <Redirect from="/" exact to="/landingPage"/>
+                        </Switch>
+                    </Router>
+                </MainContainer>
             </StretchedAppContent>
         </AppFlexLayout>
     );
@@ -58,6 +58,7 @@ display: flex;
 
 const SideContainer = styled.div`
 margin: 3vw;
+min-width: 15em;
 `;
 
 

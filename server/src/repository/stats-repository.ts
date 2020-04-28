@@ -78,3 +78,11 @@ export function decrementStatsValue(name: StatsName) {
         upsert: true
     });
 }
+
+export function resetMultiStatsValue(names: StatsName[]) {
+    const db = getDB();
+    const collection = db.collection(COLLECTION_NAME);
+    return collection.deleteMany({
+        name: { $in: names }
+    });
+}

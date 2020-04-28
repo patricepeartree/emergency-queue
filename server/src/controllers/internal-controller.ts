@@ -71,4 +71,6 @@ export async function finishRequest(patientFinishRequest: PatientFinishRequest) 
     if (welfareFrequency) {
         await WelfareChecksService.setWelfareCheck(id, date, welfareFrequency);
     }
+
+    await StatsService.handleRequestFinished();
 }

@@ -14,6 +14,15 @@ router.get("/next", async (req: Request, res: Response) => {
     }
 });
 
+router.get("/next/w", async (req: Request, res: Response) => {
+    const request = await InternalController.getNextRequestInWelfareChecksQueue();
+    if (!request) {
+        res.sendStatus(204);
+    } else {
+        res.send(request);
+    }
+});
+
 router.post("/finish", async (req: Request, res: Response) => {
     const patientFinishRequest = req.body as PatientFinishRequest;
     await InternalController.finishRequest(patientFinishRequest);

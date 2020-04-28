@@ -1,8 +1,15 @@
-import { popFirstFromQueue } from "../repository/queue-repository";
+import { QueueRepository } from "../repository";
 
+export function getNextIdInQueue(): Promise<string | null> {
+    return getNextIdInQueueByQueueName(QueueRepository.Queue.NORMAL);
+}
 
-export async function getNextIdInQueue(): Promise<string | null> {
-    const result = await popFirstFromQueue(); // returns the original document before being updated
+export function getNextIdInWelfareChecksQueue(): Promise<string | null> {
+    return getNextIdInQueueByQueueName(QueueRepository.Queue.WELFARE_CHECKS);
+}
+
+async function getNextIdInQueueByQueueName(queueName: QueueRepository.Queue): Promise<string | null> {
+    const result = await QueueRepository.popFirstFromQueue(queueName); // returns the original document before being updated
 
     const { ok, value } = result || {};
     const { queue } = value || {};

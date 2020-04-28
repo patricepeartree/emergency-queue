@@ -1,6 +1,5 @@
 import { getDB } from "./init-mongo";
 
-
 const COLLECTION_NAME = "queue";
 
 export enum Queue {
@@ -52,12 +51,12 @@ export function addManyToQueue(queueName: Queue, ids: string[]) {
     );
 }
 
-export function popFirstFromQueue() {
+export function popFirstFromQueue(queueName: Queue) {
     const db = getDB();
     const collection = db.collection(COLLECTION_NAME);
     return collection.findOneAndUpdate(
         {
-            name: Queue.NORMAL
+            name: queueName
         },
         {
             $pop: {

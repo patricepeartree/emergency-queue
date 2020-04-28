@@ -13,6 +13,14 @@ export async function getNextRequestInQueue(): Promise<Request | null> {
     return null;
 }
 
+export async function getNextRequestInWelfareChecksQueue(): Promise<Request | null> {
+    const id = await QueueService.getNextIdInWelfareChecksQueue();
+    if (id) {
+        return RequestService.getWelfareCheckRequestById(id);
+    }
+    return null;
+}
+
 export function generateResponderCapabilityToken(): string | null {
     if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.RESPONDERS_TWILIO_TWIML_APP_SID) {
         const capability = new jwt.ClientCapability({

@@ -29,7 +29,7 @@ function LandingPage() {
             </NextRequestButton>
             <Icon name="user doctor" size="massive" style={{
                 transform: "scale(6) translateX(8vw) translateY(8vh)",
-                color: "#b0b0b0",
+                color: "rgba(0, 0, 0, 0.1)",
                 position: "fixed"
             }} />
         </>

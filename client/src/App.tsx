@@ -10,6 +10,8 @@ import StatsSection from './containers/stats-section';
 import PatientDetails from "./containers/patient-details";
 import LandingPage from "./containers/landing-page";
 
+import BackgroundImage from "./qbkls.png";
+
 function App() {
 
     return (
@@ -41,6 +43,7 @@ function App() {
 
 const MainContainer = styled.div`
    background-color: #bdbdbd;
+   background: url(${BackgroundImage});
    padding: 5%;
    flex-grow:1;
 `;

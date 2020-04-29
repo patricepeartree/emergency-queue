@@ -14,6 +14,12 @@ import BackgroundImage from "./qbkls.png";
 
 function App() {
 
+
+
+    function closeApp() {
+        window.close()
+    }
+
     return (
         <AppFlexLayout>
             <Menu attached>
@@ -21,7 +27,7 @@ function App() {
                     <Icon name="user doctor"/>
                     <Header.Content>Emergency Queue</Header.Content>
                 </Menu.Item>
-                <Menu.Item position="right" name="EXIT"/>
+                <Menu.Item position="right" name="EXIT" onClick={closeApp}/>
             </Menu>
             <StretchedAppContent>
                 <SideContainer>

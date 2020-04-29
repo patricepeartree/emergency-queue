@@ -34,7 +34,7 @@ function LandingPage() {
                     dispatch(saveRequest(res.data));
                     history.push("/patientDetails");
                 } else if (res.status === HttpStatus.success.noContent) {
-                    dispatch(changeModalMessage('No more requests process!'));
+                    dispatch(changeModalMessage('No more requests to process!'));
                     throwConfetti();
                 }
             }).catch(res => {

@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
-import {Button, Dropdown, Grid, Item, Segment} from "semantic-ui-react";
+import {Button, Dropdown, Grid, Segment} from "semantic-ui-react";
 
 import {RootState} from "../store/store";
 import Request from '../model/api/request'
@@ -134,11 +134,6 @@ const DetailsItemGroupNotes = styled(DetailsItemGroup)`
         padding-top: 0;
         padding-bottom: 0;
         }
-
-`;
-
-const DetailsItemNotes = styled(DetailsItem)`
-    color: red;
 
 `;
 

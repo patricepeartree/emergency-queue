@@ -1,61 +1,71 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "main": "public/electron.js",
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.35",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
-    "@types/react-redux": "^7.1.7",
-    "@types/react-router-dom": "^5.1.4",
-    "@types/redux": "^3.6.0",
-    "@types/semantic-ui": "^2.2.7",
-    "@types/socket.io-client": "^1.4.32",
-    "@types/styled-components": "^5.1.0",
-    "axios": "^0.19.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
-    "redux": "^4.0.5",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.88.2",
-    "socket.io-client": "^2.3.0",
-    "styled-components": "^5.1.0",
-    "twilio-client": "^1.10.1",
-    "typescript": "^3.7.5"
-  },
-  "scripts": {
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-react": "react-scripts start",
-    "start": "concurrently \"npm run start-react\" \"wait-on http://localhost:3000 && electron .\""
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "concurrently": "^5.1.0",
-    "electron": "^8.2.1",
-    "wait-on": "^4.0.2"
-  }
+    "name": "client",
+    "version": "0.1.0",
+    "private": true,
+    "main": "public/electron.js",
+    "homepage": "./",
+    "build": {
+        "appId": "com.example.emergency-queue",
+        "win": {
+            "target": "portable"
+        }
+    },
+    "scripts": {
+        "react-build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "react-start": "react-scripts start",
+        "start": "concurrently \"BROWSER=none && npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+        "pack": "npm run react-build && electron-builder --dir",
+        "build": "electron-builder -l"
+    },
+    "dependencies": {
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.5.0",
+        "@testing-library/user-event": "^7.2.1",
+        "@types/jest": "^24.9.1",
+        "@types/node": "^12.12.35",
+        "@types/react": "^16.9.34",
+        "@types/react-dom": "^16.9.6",
+        "@types/react-redux": "^7.1.7",
+        "@types/react-router-dom": "^5.1.4",
+        "@types/redux": "^3.6.0",
+        "@types/semantic-ui": "^2.2.7",
+        "@types/socket.io-client": "^1.4.32",
+        "@types/styled-components": "^5.1.0",
+        "axios": "^0.19.2",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-redux": "^7.2.0",
+        "react-router-dom": "^5.1.2",
+        "react-scripts": "3.4.1",
+        "redux": "^4.0.5",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-react": "^0.88.2",
+        "socket.io-client": "^2.3.0",
+        "styled-components": "^5.1.0",
+        "twilio-client": "^1.10.1",
+        "typescript": "^3.7.5"
+    },
+    "devDependencies": {
+        "concurrently": "^5.1.0",
+        "electron": "^8.2.1",
+        "electron-builder": "^22.5.1",
+        "wait-on": "^4.0.2"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

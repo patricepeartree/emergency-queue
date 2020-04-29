@@ -1,5 +1,12 @@
 import Request from '../../model/api/request'
-import {SAVE_CURRENT_REQUEST, SAVE_CALL_NOTES, SAVE_WELFARE_FREQUENCY, RESET_PATIENT_DATA} from "./types";
+import {
+    SAVE_CURRENT_REQUEST,
+    SAVE_CALL_NOTES,
+    SAVE_WELFARE_FREQUENCY,
+    RESET_PATIENT_DATA,
+    TOGGLE_MODAL,
+    CHANGE_MODAL_MESSAGE
+} from "./types";
 
 export const saveRequest = (request: Request) => ({
     type: SAVE_CURRENT_REQUEST,
@@ -18,4 +25,14 @@ export const saveWelfareFrequency = (welfareFrequency: string) => ({
 
 export const resetPatient = () => ({
     type: RESET_PATIENT_DATA,
+});
+
+export const toggleModal = (state: boolean) => ({
+    type: TOGGLE_MODAL,
+    payload: state
+});
+
+export const changeModalMessage = (message: string) => ({
+    type: CHANGE_MODAL_MESSAGE,
+    payload: message
 });

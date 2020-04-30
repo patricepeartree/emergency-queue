@@ -8,8 +8,10 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({ width: 900, height: 680 });
+    mainWindow = new BrowserWindow({ width: 900, height: 680, icon: 'favicon.ico' });
+    
     mainWindow.maximize();
+    mainWindow.removeMenu();
 
     const startUrl = app.isPackaged
         ? url.format({
@@ -20,8 +22,6 @@ function createWindow() {
         : "http://localhost:3000"; // FIXME env
 
     mainWindow.loadURL(startUrl);
-
-    mainWindow.openDevTools();
 
     mainWindow.on('closed', () => mainWindow = null);
 }

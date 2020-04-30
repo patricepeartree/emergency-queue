@@ -26,7 +26,7 @@ export function getRequestById(id: string): Promise<Request | null> {
     return RequestRepository.getRequestById(id, {
         patient: 1,
         phoneNumber: 1,
-        symptoms: 1
+        symptoms: 1,
     });
 }
 

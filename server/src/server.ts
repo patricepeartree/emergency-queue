@@ -2,15 +2,13 @@ import express, { Express } from 'express';
 import http, { Server } from 'http';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import * as dotenv from "dotenv";
+import variables from '../src/utils/environment'
 
 import routes from './routes';
 import { SocketService, AgendaService } from "./services";
 import { initMongoConnection } from "./repository/init-mongo";
 
-dotenv.config();
-
-const port = process.env.PORT || 8080;
+const port = variables.PORT || 8080;
 
 const app: Express = express();
 const server: Server = http.createServer(app);

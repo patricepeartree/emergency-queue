@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { Icon, SemanticICONS, Item } from "semantic-ui-react";
 
 interface DetailsItemProps {
-    icon: SemanticICONS;
-    title: string;
-    content: string[];
+    icon?: SemanticICONS;
+    title?: string;
+    content?: string[];
+    meta?: string;
 }
 
 function DetailsItem(props: DetailsItemProps) {
-    const { icon, title, content } = props;
+    const { icon, title, content, meta } = props;
 
     return (
         <Item>
@@ -19,7 +20,7 @@ function DetailsItem(props: DetailsItemProps) {
 
             <Item.Content>
                 <Item.Header>{title}</Item.Header>
-                {/* <Item.Meta>Description</Item.Meta> */}
+                {meta && <Item.Meta>{meta}</Item.Meta> }
                 {(content || []).map(text => (
                     <Item.Description>{text}</Item.Description>
                 ))}
@@ -32,7 +33,7 @@ function DetailsItem(props: DetailsItemProps) {
 export function DetailsItemGroup(props: any) {
     const { children } = props;
     return (
-        <ItemGroup>
+        <ItemGroup className={props.className}>
             {children}
         </ItemGroup>
     );

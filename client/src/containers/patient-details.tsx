@@ -71,7 +71,7 @@ function PatientDetails() {
                         </DetailsItemGroup>
                     </Segment>
                     {request.callLogs && (
-                        <Segment compact basic>
+                        <Segment basic>
                             <DetailsItemGroupNotes>
                                 <DetailsItem
                                     icon="sticky note outline"
@@ -125,15 +125,14 @@ const TerminateButton = styled(Button)`
 
 const DetailsItemGroupNotes = styled(DetailsItemGroup)`
     overflow-y: scroll;
-    height: 30em;
-
+    max-height: 30em;
+    
     &.ui.items>.item  {
         margin: 0;
     }
     
     &.ui.items>:not(:first-child)>.content{
         padding-top: 0;
-        padding-bottom: 0;
         }
 
 `;

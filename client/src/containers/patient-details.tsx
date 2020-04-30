@@ -13,10 +13,11 @@ import axios from "axios";
 import APIUrls from "../constants/api-urls";
 import {WelfareFrequency} from "../model/api/patient";
 import {saveWelfareFrequency} from "../store/actions/actions";
+import {formatDate} from "../utils/date-formats";
 
 function PatientDetails() {
     const request: Request = useSelector((state: RootState) => state.appReducer.request);
-    const {_id, welfareCheckFrequency, symptoms, patient} = request;
+    const {_id, welfareCheckFrequency, symptoms, patient, callLogs} = request;
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -76,20 +77,15 @@ function PatientDetails() {
                                     icon="sticky note outline"
                                     title="Previous Calls Notes"
                                 />
-                                {(request.callLogs || []).map(log => (
+                                {(callLogs || []).map(log => (
                                     <DetailsItem
-                                        meta={"" + log.date}
+                                        meta={formatDate(log.date)}
                                         content={[log.notes]}
                                     />
                                 ))}
                             </DetailsItemGroupNotes>
                         </Segment>)
                     }
-                    <BottomSegment basic>
-                        <Dropdown placeholder='Welfare check frequency' fluid clearable options={options} selection
-                                  defaultValue={request.welfareCheckFrequency}
-                                  onChange={updateWelfareFrequency}/>
-                    </BottomSegment>
                 </Grid.Column>
                 <Grid.Column>
                     <Segment basic>
@@ -97,6 +93,11 @@ function PatientDetails() {
                     </Segment>
                     <Segment basic>
                         <CallNotes/>
+                    </Segment>
+                    <Segment basic>
+                        <Dropdown placeholder='Welfare check frequency' fluid clearable options={options} selection
+                                  defaultValue={request.welfareCheckFrequency}
+                                  onChange={updateWelfareFrequency}/>
                     </Segment>
                     <BottomSegment basic>
                         <TerminateButton size='massive' color='green' onClick={terminatePatient}>
@@ -124,7 +125,7 @@ const TerminateButton = styled(Button)`
 
 const DetailsItemGroupNotes = styled(DetailsItemGroup)`
     overflow-y: scroll;
-    height: 350px;
+    height: 30em;
 
     &.ui.items>.item  {
         margin: 0;

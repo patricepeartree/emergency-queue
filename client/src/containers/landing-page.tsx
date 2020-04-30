@@ -63,9 +63,7 @@ function LandingPage() {
 
 
     function handleClose() {
-        console.log('start close');
         dispatch(toggleModal(false));
-        console.log('finish close');
     }
 
     return (

@@ -11,8 +11,6 @@ const router = Router();
 // })
 
 router.get('/incoming', (req: Request, res: Response) => {
-    const { Caller } = req.body || {};
-    VoiceController.saveRequestTemporarily(Caller,'phoneNumber', Caller);
     const twimlResponse = VoiceController.askPatientName();
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });
@@ -22,6 +20,7 @@ router.get('/incoming', (req: Request, res: Response) => {
 router.post('/identification', (req: Request, res: Response) => {
     const { Caller, SpeechResult } = req.body || {};
     VoiceController.savePatientTemporarily(Caller,'name', SpeechResult);
+    VoiceController.saveRequestTemporarily(Caller,'phoneNumber', Caller);
     const twimlResponse = VoiceController.askPatientAge();
 
     res.writeHead(200, { 'Content-Type': 'text/xml' });

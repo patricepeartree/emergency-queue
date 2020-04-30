@@ -12,7 +12,7 @@ export function askPatientName() {
     const gather = twimlResponse.gather({
         input: ["speech"],
         action: "/api/voice/identification",
-        timeout: 3,
+        timeout: 2,
         language: "en-GB"
     });
 
@@ -29,7 +29,7 @@ export function askPatientAge() {
     const gather = twimlResponse.gather({
         input: ["speech"],
         action: "/api/voice/age",
-        timeout: 3,
+        timeout: 2,
         language: "en-GB"
     });
 
@@ -46,7 +46,7 @@ export function askPatientSymptoms() {
     const gather = twimlResponse.gather({
         input: ["speech"],
         action: "/api/voice/symptoms",
-        timeout: 3,
+        timeout: 2,
         language: "en-GB"
     });
 

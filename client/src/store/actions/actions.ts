@@ -7,10 +7,11 @@ import {
     TOGGLE_MODAL,
     CHANGE_MODAL_MESSAGE
 } from "./types";
+import {toClientRequest} from "../../utils/server-responses";
 
 export const saveRequest = (request: Request) => ({
     type: SAVE_CURRENT_REQUEST,
-    payload: request
+    payload: toClientRequest(request),
 });
 
 export const saveCallNotes = (notes: string) => ({

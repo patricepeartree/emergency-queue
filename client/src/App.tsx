@@ -22,13 +22,13 @@ function App() {
 
     return (
         <AppFlexLayout>
-            <Menu attached>
+            <CustomHeader attached>
                 <Menu.Item className="borderless" header as="h2" name="user doctor">
                     <Icon name="user doctor"/>
                     <Header.Content>Emergency Queue</Header.Content>
                 </Menu.Item>
                 <Menu.Item position="right" name="EXIT" onClick={closeApp}/>
-            </Menu>
+            </CustomHeader>
             <StretchedAppContent>
                 <SideContainer>
                     <StatsSection/>
@@ -48,26 +48,33 @@ function App() {
 }
 
 const MainContainer = styled.div`
-   background-color: #bdbdbd;
-   background: url(${BackgroundImage});
-   padding: 5%;
-   flex-grow:1;
+    background-color: #bdbdbd;
+    background: url(${BackgroundImage});
+    padding: 5%;
+    flex-grow:1;
 `;
 
 const AppFlexLayout = styled.div`
-height: 100%;
-display: flex;
-flex-direction: column;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 `;
 
 const StretchedAppContent = styled.div`
-flex-grow: 1;
-display: flex;
+    flex-grow: 1;
+    display: flex;
+    height: 92vh;
 `;
 
 const SideContainer = styled.div`
-margin: 3vw;
-min-width: 15em;
+    margin: 3vw;
+    min-width: 15em;
+`;
+
+const CustomHeader = styled(Menu)`
+    &.ui.attached.menu {
+        height: 8vh;
+    }
 `;
 
 

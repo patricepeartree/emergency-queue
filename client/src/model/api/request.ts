@@ -1,7 +1,7 @@
 import Patient from "./patient";
 
-interface RequestCallLog {
-    date: string;
+export interface RequestCallLog {
+    date: Date;
     notes: string;
 }
 

@@ -11,22 +11,13 @@ function createWindow() {
     mainWindow = new BrowserWindow({ width: 900, height: 680 });
     mainWindow.maximize();
 
-    // const startUrl = app.isPackaged
-    //     ? url.format({
-    //         pathname: path.join(__dirname, '/../build/index.html'),
-    //         protocol: 'file:',
-    //         slashes: true
-    //     })
-    //     : "http://localhost:3000";
-
-    console.log("#######################");
-    console.log(__dirname);
-
-    const startUrl = url.format({
-        pathname: path.join(__dirname, "../build/index.html"),
-        protocol: 'file:',
-        slashes: true
-    });
+    const startUrl = app.isPackaged
+        ? url.format({
+            pathname: path.join(__dirname, "../build/index.html"),
+            protocol: 'file:',
+            slashes: true
+        })
+        : "http://localhost:3000"; // FIXME env
 
     mainWindow.loadURL(startUrl);
 

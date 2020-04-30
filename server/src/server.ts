@@ -10,7 +10,7 @@ import { initMongoConnection } from "./repository/init-mongo";
 
 dotenv.config();
 
-const port = 8080; // FIXME env variable
+const port = process.env.PORT || 8080;
 
 const app: Express = express();
 const server: Server = http.createServer(app);

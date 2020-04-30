@@ -16,8 +16,8 @@
         "eject": "react-scripts eject",
         "react-start": "react-scripts start",
         "start": "concurrently \"BROWSER=none && npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-        "pack": "npm run react-build && electron-builder --dir",
-        "build": "electron-builder -l"
+        "build-linux": "npm run react-build && electron-builder -c.directories.output=dist/linux -l",
+        "build-windows": "npm run react-build && electron-builder -c.directories.output=dist/windows -w"
     },
     "dependencies": {
         "@testing-library/jest-dom": "^4.2.4",

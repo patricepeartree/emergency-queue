@@ -1,7 +1,7 @@
 import { Db, MongoClient } from "mongodb";
 
 // Connection URL
-const MONGO_URL = 'mongodb://mongo:27017'; // FIXME env variable
+const MONGO_URL = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}`;
 
 // Database Name
 const APP_DATABASE_NAME = 'emergencyQueue';

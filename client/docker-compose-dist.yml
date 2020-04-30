@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+
+    client-build-linux:
+        image: electronuserland/builder
+        volumes:
+            - .:/project
+        command: npm run build-linux
+
+    client-build-windows:
+        image: electronuserland/builder:wine
+        volumes:
+            - .:/project
+        command: npm run build-windows

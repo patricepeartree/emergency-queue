@@ -90,3 +90,7 @@ docker-compose -f docker-compose-dist.yml run --rm client-build-linux
 After the build is complete, run the generated `dist/linux/client-0.1.0.AppImage` file.
 
 - Alternativelly, you can start the client application in development mode by executing `npm run start`.
+
+## License
+
+[Apache License Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)

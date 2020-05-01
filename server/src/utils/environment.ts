@@ -2,7 +2,6 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-/* eslint no-process-env:0 */
 const variables = {
 
     env: process.env.env,

@@ -49,6 +49,7 @@
         "typescript": "^3.7.5"
     },
     "devDependencies": {
+        "@types/canvas-confetti": "^1.0.0",
         "concurrently": "^5.1.0",
         "electron": "^8.2.1",
         "electron-builder": "^22.5.1",

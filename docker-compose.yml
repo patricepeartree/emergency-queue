@@ -14,6 +14,12 @@ services:
         ports:
             - 8081:8081
 
+    ngrok:
+        image: wernight/ngrok
+        ports: 
+            - 4040:4040
+        command: ngrok http server:8080
+
     server:
         build: ./server
         ports:

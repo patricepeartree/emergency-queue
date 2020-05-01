@@ -12,9 +12,12 @@ export function getQueueCount(): Promise<number> {
     const collection = db.collection(COLLECTION_NAME);
     return collection.findOne({
         name: Queue.NORMAL
-    }).then(res => res.queue.length);
+    }).then(res => {
+        if (res) return res.queue.length;
+        else return 0;
+    });
 }
-
+    
 export function addToQueue(id: string) {
     const db = getDB();
     const collection = db.collection(COLLECTION_NAME);

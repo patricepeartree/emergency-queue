@@ -70,9 +70,22 @@ Go back to the Apps your created in the first step and configure their webhooks 
 
 ### 5. Start the client
 
-- **Windows**: Execute [client 0.1.0.exe](client/dist/windows/client%200.1.0.exe).
+In the `client` folder, execute one of the following commands to build the executable file for the desired platform:
 
-- **Linux**: Run [client-0.1.0.AppImage](client/dist/linux/client-0.1.0.AppImage).
+- **Windows**: 
 
+```
+docker-compose -f docker-compose-dist.yml run --rm client-build-windows
+```
 
-Alternativelly, you can syart the client application in development mode by executing `npm run start` in the `client` folder.
+After the build is complete, execute the generated `dist/windows/client 0.1.0.exe` file.
+
+- **Linux**: 
+
+```
+docker-compose -f docker-compose-dist.yml run --rm client-build-linux
+```
+
+After the build is complete, run the generated `dist/linux/client-0.1.0.AppImage` file.
+
+- Alternativelly, you can start the client application in development mode by executing `npm run start`.

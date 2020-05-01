@@ -19,7 +19,7 @@ For setup purposes, from now on we will refer to the TwiML Apps as _TwiML App 1_
 
 > See [here](https://support.twilio.com/hc/en-us/articles/223180928-How-Do-I-Create-a-TwiML-App-) how you can create a TwiML App in the Twilio Console.
 
-You also need to get **two Twilio phone number** with the following characteristics:
+You also need to get **two Twilio phone numbers** with the following characteristics:
 
 - _Phone number 1_ must have **SMS and Voice** capabilities. For both Voice and SMS, configure this phone number with _TwiML App 1_.
 

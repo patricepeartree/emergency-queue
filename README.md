@@ -91,6 +91,12 @@ After the build is complete, run the generated `dist/linux/client-0.1.0.AppImage
 
 - Alternativelly, you can start the client application in development mode by executing `npm run start`.
 
+## Authors
+
+:cookie: [leeforaday](https://github.com/leeforaday)
+
+:coffee: [patricepeartree](https://github.com/patricepeartree)
+
 ## License
 
 [Apache License Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)

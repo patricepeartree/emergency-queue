@@ -35,6 +35,7 @@ Open the [`server/.env`](server/.env) file and set the environment variables wit
 | --- | --- |
 | TWILIO_ACCOUNT_SID | Your Twilio account identifier. Find it in the [Console](https://www.twilio.com/console). |
 | TWILIO_AUTH_TOKEN | Your Twilio auth token. Find it in the [Console](https://www.twilio.com/console). |
+| INCOMING_TWILIO_NUMBER | The **_Phone number 1_** in [E.164](https://en.wikipedia.org/wiki/E.164) format, e.g. "+351 987 654 321". |
 | RESPONDERS_TWILIO_TWIML_APP_SID | The application identifier of the **_TwiML App 2_**. |
 | RESPONDERS_TWILIO_NUMBER | The **_Phone number 2_** in [E.164](https://en.wikipedia.org/wiki/E.164) format, e.g. "+351 987 654 321". |
 

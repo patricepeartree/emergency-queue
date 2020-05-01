@@ -4,6 +4,7 @@ import Request from "../model/request";
 import PatientFinishRequest from "../model/api/patient-finish-request";
 import { RequestService, QueueService, StatsService, WelfareChecksService } from "../services";
 import { StatsRepository, RequestRepository } from "../repository";
+import variables from "../utils/environment";
 
 export async function getNextRequestInQueue(): Promise<Request | null> {
     const id = await QueueService.getNextIdInQueue();
@@ -22,16 +23,16 @@ export async function getNextRequestInWelfareChecksQueue(): Promise<Request | nu
 }
 
 export function generateResponderCapabilityToken(): string | null {
-    if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.RESPONDERS_TWILIO_TWIML_APP_SID) {
+    if (variables.TWILIO_ACCOUNT_SID && variables.TWILIO_AUTH_TOKEN && variables.RESPONDERS_TWILIO_TWIML_APP_SID) {
         const capability = new jwt.ClientCapability({
-            accountSid: process.env.TWILIO_ACCOUNT_SID,
-            authToken: process.env.TWILIO_AUTH_TOKEN,
-            ttl: 600 // TODO Time To Live, only the time necessary to establish the connection, should also be an env
+            accountSid: variables.TWILIO_ACCOUNT_SID,
+            authToken: variables.TWILIO_AUTH_TOKEN,
+            ttl: 600 // Time To Live, only the time necessary to establish the connection
         });
 
         capability.addScope(
             new jwt.ClientCapability.OutgoingClientScope({
-                applicationSid: process.env.RESPONDERS_TWILIO_TWIML_APP_SID
+                applicationSid: variables.RESPONDERS_TWILIO_TWIML_APP_SID
             })
         );
 
@@ -45,7 +46,7 @@ export function dialPatient(number: string) {
     const voiceResponse = new twiml.VoiceResponse();
 
     const dial = voiceResponse.dial({
-        callerId: process.env.RESPONDERS_TWILIO_NUMBER,
+        callerId: variables.RESPONDERS_TWILIO_NUMBER,
         answerOnBridge: true
     });
 

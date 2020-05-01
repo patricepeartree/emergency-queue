@@ -1,7 +1,9 @@
 import { Db, MongoClient } from "mongodb";
 
+import variables from "../utils/environment";
+
 // Connection URL
-const MONGO_URL = `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}`;
+const MONGO_URL = `mongodb://${variables.MONGO_HOST}:${variables.MONGO_PORT}`;
 
 // Database Name
 const APP_DATABASE_NAME = 'emergencyQueue';

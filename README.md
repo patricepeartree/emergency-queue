@@ -1,5 +1,13 @@
 ![header](header.png)
 
+## About
+
+> This project was developed in the context of the [Twilio x DEV community hackathon](https://dev.to/devteam/announcing-the-twilio-hackathon-on-dev-2lh8). 
+
+The **Emergency Queue** is a communication point between the medical responders of the national Medical Emergency Line and the patients. It is aimed at simplifying and improving the waiting process for the caller. The core feature of the application is an idle waiting line.
+
+You can read more about the application functionalities and also check demo videos [here](https://dev.to/patricepeartree/covid-19-emergency-queue-2b6h).
+
 ## Setup
 
 > **Disclaimer:** <br>

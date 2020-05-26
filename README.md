@@ -8,7 +8,7 @@
 
 The **Emergency Queue** is a communication point between the medical responders of the national Medical Emergency Line and the patients. It is aimed at simplifying and improving the waiting process for the caller. The core feature of the application is an idle waiting line.
 
-You can read more about the application functionalities and also check demo videos [here](https://dev.to/patricepeartree/covid-19-emergency-queue-2b6h).
+**You can read more about the application functionalities and also check demo videos [here](https://dev.to/patricepeartree/covid-19-emergency-queue-2b6h).**
 
 ## Setup
 
